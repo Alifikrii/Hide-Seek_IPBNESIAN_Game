@@ -14,3 +14,5 @@ Menemukan dosen dengan waktu yang cepat.
 1. Fikri harus menemukan dosen
 2. Ruangan CCR yang banyak dapat menyebabkan waktu Fikri semakin sedikit, jangan sampai habis sebelum menemukan dosen
 
+## Denah CCR Lantai 1
+![CCR ltr1 No Grid (2)](https://user-images.githubusercontent.com/79049671/142749985-09b027be-7285-4cae-aff0-5a8d5ac03719.png)
