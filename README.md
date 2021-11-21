@@ -5,4 +5,10 @@
 3. Risda Awalia G6419106
 
 ## Story Summary
+Fikri adalah seorang mahasiswa baru IPB University dan harus mencari dosen di gedung CCR dikarenakan masalah administrasi kelas. Bantu Fikri untuk menemukan dosen di salah satu ruangan CCR agar dapat menyelesaikan masalah dengan cepat.
 
+## Goals
+Menemukan dosen dengan waktu yang cepat.
+
+## Rules
+1. Fikri 
