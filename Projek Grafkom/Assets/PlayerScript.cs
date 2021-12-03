@@ -6,10 +6,7 @@ using Photon.Pun;
 using Photon.Realtime;  
 
 
-
-
-public class PlayerScript : MonoBehaviourPunCallbacks
-{
+public class PlayerScript : MonoBehaviourPunCallbacks {
     public PhotonView TampilanPhoton;
     public Rigidbody2D rb;
     public Animator anim;
@@ -22,216 +19,113 @@ public class PlayerScript : MonoBehaviourPunCallbacks
     public float MoveSpeed;
 
     public Button absenButton;
+    public Text absenText;
     public GameObject absen;
 
     // public MasterClient masterClient;
 
     //id yang jadi dosen
-    // public bool isDosen;
+    public bool isDosen = false;
     // public int jadiDosen;
 
-
-    // private void Start()
-    // {
-        
-    //     if(PhotonNetwork.IsMasterClient)
-    //     {
-    //         PilihDosen();
-    //     }
-    // }
-     private void Awake() 
-    {
+    private void Awake() {
         TampilanPhoton = GetComponent<PhotonView>();
         
-        if (TampilanPhoton.IsMine)
-        {
+        if (TampilanPhoton.IsMine) {
             PlayerCamera.SetActive(true);
             lampu.SetActive(true);
             PlayerNameText.text = PhotonNetwork.NickName;
             Debug.Log(PlayerNameText.text);
             Debug.Log(PhotonNetwork.LocalPlayer);
         }
-        else
-        {
+        else {
             PlayerNameText.text = TampilanPhoton.Owner.NickName;
             PlayerNameText.color = Color.cyan;
-            // if(gameObject.tag == "Dosen")
-            // {
-            //     PlayerNameText.color = Color.red;
-            // }
-            // if(gameObject.tag == "Teman")
-            // {
-            //     PlayerNameText.color = Color.cyan;
-            // }
-
             Debug.Log(PlayerNameText.text);
             Debug.Log(PhotonNetwork.LocalPlayer);
         }
-
-        
-
-        // if(isDosen == true)
-        // {
-        //     PlayerNameText.color = Color.red;
-        // }
-        // if(gameObject.tag == "Dosen")
-        // {
-        //     PlayerNameText.color = Color.red;
-        // }
     }
    
 
-    private void Update()
-    {
+    private void Update() {
         
-        if(TampilanPhoton.IsMine)
-        {
+        if(TampilanPhoton.IsMine) {
             absen.SetActive(true);
             
             CheckInput();
             // Kalau Dosen warnanya merah
-            
+            if(isDosen==true) {
+                absenText.text = "ALPA";
+                absenText.color = Color.red;
+            }
+            else {
+                absenText.text = "HADIR";
+                absenText.color = Color.green;
+            }          
         }
-
-        // if(PhotonNetwork.IsMasterClient && TampilanPhoton.IsMine)
-        // {
-        //     gameObject.tag = "Dosen";
-        // }
-        
-
     }
 
 // ini untuk mengetahui pergerkaan player
-    private void CheckInput()
-    {
+    private void CheckInput() {
         var move = new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         transform.position += move * MoveSpeed * Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.A))
-        {
+        if (Input.GetKeyDown(KeyCode.A)) {
             TampilanPhoton.RPC("FlipTrue", RpcTarget.All);
             Debug.Log("ADA kiri");
         }
 
-        if (Input.GetKeyDown(KeyCode.D))
-        {
+        if (Input.GetKeyDown(KeyCode.D)) {
             TampilanPhoton.RPC("FlipFalse", RpcTarget.All);
             Debug.Log("ADA kanan");
         }
 
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) )
-        {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ) {
             anim.SetBool("isRunning",true);
         }
-        else
-        {
+        else {
             anim.SetBool("isRunning",false);
-        }
-       
+        } 
     }
 
     [PunRPC]
-    private void FlipTrue()
-    {
+    private void FlipTrue() {
          sr.flipX = true;
     }
 
     [PunRPC]
-    private void FlipFalse()
-    {
+    private void FlipFalse() {
          sr.flipX = false;
     }
 
     //masih mau diperbaiki
-    void OnTriggerEnter2D(Collider2D other)
-    {
-        // if(gameObject.tag == "Dosen" && other.gameObject.tag=="Teman")
-        if(other.gameObject.tag=="Teman")
-        {
+    void OnTriggerEnter2D(Collider2D other) {
+        if(other.gameObject.tag=="Teman" && isDosen==true) {
             absenButton.interactable = true;
             Debug.Log("Alpa");
-            Debug.Log(gameObject.tag);
+            Debug.Log(other.gameObject.tag);
         }
-        // else if (gameObject.tag == "Teman" && other.gameObject.tag=="Dosen")
-        // {
-        //     absenButton.interactable = true;
-        //     Debug.Log("Hadir");
-        //     Debug.Log(gameObject.tag);
-        // }
-        else
-        {
+        else if (other.gameObject.tag == "Dosen" && isDosen == false) {
+            absenButton.interactable = true;
+            Debug.Log("Hadir");
+            Debug.Log(other.gameObject.tag);
+        }
+        else {
             absenButton.interactable = false;
-            Debug.Log(gameObject.tag);
+            Debug.Log(other.gameObject.tag);
         }
-
-        
-
     }
-    void OnTriggerExit2D(Collider2D other)
-    {
+
+    void OnTriggerExit2D(Collider2D other) {
             absenButton.interactable = false;
             Debug.Log("jauh");
         
     }
 
-    // [PunRPC]
-    // public void SetDosen()
-    // {
-    //     Debug.Log("SAYA DOSENNN");
-    // }
-    // public void PilihDosen()
-    // {
-    //     // jadiDosen = Random.Range(0, PhotonNetwork.CurrentRoom.PlayerCount);
-    //     // // TampilanPhoton.RPC("RPC_SyncDosen", RpcTarget.All, jadiDosen);
-    //     // Debug.Log("Dosen" + jadiDosen);
-    //     Debug.Log("ajdimamsimsdiiki");
-        
-    //     TampilanPhoton.RPC("RPC_setColorName" , RpcTarget.Others);
-        
-    // }
-
-    // [PunRPC]
-    // public void RPC_setColorName()
-    // {
-
-    //     gameObject.tag="Teman";
-
-    //     if(gameObject.tag == "Dosen")
-    //     {
-    //         PlayerNameText.color = Color.red;
-    //     }
-    // }
-
-    // void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
-    // {
-    //     if(stream.IsWriting)
-    //     {
-    //         // stream.SendText(direction);
-    //         stream.SendNext(isDosen);
-    //     }
-    //     else 
-    //     {
-    //         // this.direction = (float)stream.ReceiveNext();
-    //         this.isDosen = (bool)stream.ReceiveNext();
-    //     }
-    // }
-
-    // public void menjadiDosen(int idDosen)
-    // {
-    //     if(PhotonNetwork.LocalPlayer == PhotonNetwork.PlayerList[idDosen])
-    //     {
-    //         isDosen = true;
-    //     }
-        
-    // }    
-
-   
-
-    // [PunRPC]
-    // public void RPC_SyncDosen (int playerNumber)
-    // {
-    //     jadiDosen = playerNumber;
-    //     menjadiDosen(jadiDosen);
-    // }
-
+    [PunRPC]
+    public void RPC_SetDosen(int idDsn) {
+        gameObject.tag = "Dosen";
+        isDosen = true;
+        Debug.Log("SAYA DOSENNN id = " + idDsn + TampilanPhoton.Owner.NickName);
+    }
 }

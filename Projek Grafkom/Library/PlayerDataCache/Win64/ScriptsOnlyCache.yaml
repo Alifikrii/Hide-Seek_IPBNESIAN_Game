@@ -2,9 +2,9 @@ ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
     - GameManager
+    - MasterClient
     - MenuController
     - PlayerScript
-    - iniMaster
     PhotonUnityNetworking.Demos.dll:
     - Photon.Pun.Demo.Asteroids.Asteroid
     - Photon.Pun.Demo.Asteroids.Bullet
@@ -27,6 +27,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -836,7 +837,7 @@ ScriptsOnlyBuild:
     className: PlayerDetailsController
   - hash:
       serializedVersion: 2
-      Hash: 53a0b0ffbe452cf7dde471897bc436af
+      Hash: ae265e2e82a64b9b1e5a77e3f68bfb8d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -971,7 +972,7 @@ ScriptsOnlyBuild:
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: iniMaster
+    className: MasterClient
   - hash:
       serializedVersion: 2
       Hash: a5781dc71a671b1ad2b38de19f24b71f
@@ -1382,7 +1383,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector3
   - hash:
       serializedVersion: 2
-      Hash: 245837731d41a12ee42b16240dba9c46
+      Hash: 67ea319f6af1cca80456a317be853ff5
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerScript
@@ -2200,4 +2201,4 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/MainGame.unity
-  playerPath: G:/My Drive/kuliah s5/Grafkom/projekGame/Experiment/My project.exe
+  playerPath: G:/My Drive/kuliah s5/Grafkom/projekGame/BelumFinal/My project.exe

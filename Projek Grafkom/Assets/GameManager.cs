@@ -6,8 +6,7 @@ using UnityEngine.UI;
 using Photon.Pun;
 using Photon.Realtime;
 
-public class GameManager : MonoBehaviourPunCallbacks
-{
+public class GameManager : MonoBehaviourPunCallbacks {
     public GameObject PlayerPrefab;
     public GameObject GameCanvas;
     public GameObject SceneCamera;
@@ -24,15 +23,9 @@ public class GameManager : MonoBehaviourPunCallbacks
     //ktext tunggu host memulai game
     public Text HostText;
 
-    //mulai mencari dosen 
-    // GameObject DosenRole;
-    // public PlayerScript PemainScript;
-    // public MasterClient masterClient;
+    public MasterClient masterClient;
     
-
-
-    private void Update()
-    {
+    private void Update() {
         PingText.text = "ping : " + PhotonNetwork.GetPing() + "ms";
         // JumlahPlayerdiLoby.text = "Jumlah Player : "+ PhotonNetwork.CurrentRoom.PlayerCount;
         NamaRoom.text = "LOBBY : " + PhotonNetwork.CurrentRoom.Name;
@@ -43,16 +36,13 @@ public class GameManager : MonoBehaviourPunCallbacks
             PingText.color = Color.green;
         
         //jika ada 2 atau lebih player di dalam loby
-        if(PhotonNetwork.CurrentRoom.PlayerCount >= 2 && PhotonNetwork.IsMasterClient)
-        // if(PhotonNetwork.CurrentRoom.PlayerCount >= 2)
-        {
+        if(PhotonNetwork.CurrentRoom.PlayerCount >= 2 && PhotonNetwork.IsMasterClient) {
             startButton.interactable = true;
             HostText.text = "Tekan Start Untuk Memulai Game";
             HostText.color = Color.green;
 
         }
-        else if(PhotonNetwork.CurrentRoom.PlayerCount < 2)
-        {
+        else if(PhotonNetwork.CurrentRoom.PlayerCount < 2) {
             startButton.interactable = false;
         }
         
@@ -61,12 +51,10 @@ public class GameManager : MonoBehaviourPunCallbacks
     }
 
 //untuk list player
-    public void AddAllActivePlayers()
-     {
+    public void AddAllActivePlayers() {
          var playerList = new StringBuilder();
          Dictionary<int, Photon.Realtime.Player> playerl = Photon.Pun.PhotonNetwork.CurrentRoom.Players;
-         foreach (KeyValuePair<int, Photon.Realtime.Player> p in playerl)
-         {
+         foreach (KeyValuePair<int, Photon.Realtime.Player> p in playerl) {
              
             playerList.Append(p.Value.NickName + "\n"); 
          }
@@ -75,13 +63,11 @@ public class GameManager : MonoBehaviourPunCallbacks
      }
     
 
-    private void Awake()
-    {
+    private void Awake() {
         GameCanvas.SetActive(true);
     }
 
-    public void SpawnPlayer()
-    {
+    public void SpawnPlayer() {
         
         // Debug.Log("adakok");
         float randomValue = Random.Range(-1f, 1f);
@@ -92,18 +78,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         GameCanvas.SetActive(false);
         SceneCamera.SetActive(false);
 
-        // masterClient.Initialize();
-
-
-        // DosenRole = GameObject.Find("Player").
-       // PemainScript = GetComponent<PlayerScript>();
-        // DosenRole.PilihDosen();
-        // PemainScript.PilihDosen();
-
+        // ini untuk menginisialisasi dosen
+        if(PhotonNetwork.IsMasterClient) {
+            masterClient.Initialize();
+        }
     }
    
-    public void CheckInput()
-    {
+    public void CheckInput() {
         if(off && Input.GetKeyDown(KeyCode.Escape))
         {
             DisconnectUI.SetActive(false);
@@ -116,15 +97,13 @@ public class GameManager : MonoBehaviourPunCallbacks
         }
     }
 
-    public void leaveRoom()
-    {
+    public void leaveRoom() {
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel("MainMenu");
     }
 
    
-    public void startBtn()
-    {
+    public void startBtn() {
         myPv = GetComponent<PhotonView>();
         myPv.RPC("RPC_spawnAll", RpcTarget.All);
         myPv.RPC("RPC_LobyMessage", RpcTarget.AllBufferedViaServer);
@@ -133,14 +112,12 @@ public class GameManager : MonoBehaviourPunCallbacks
 
     // spawn all player
     [PunRPC]
-    public void RPC_spawnAll()
-    {
+    public void RPC_spawnAll() {
         SpawnPlayer();
     }
 
     [PunRPC]
-    public void RPC_LobyMessage()
-    {
+    public void RPC_LobyMessage() {
         HostText.text = "Tidak dapat Bergabung, Game Sedang Berlangsung";
         HostText.color = Color.red;
     }

@@ -436,7 +436,7 @@ MonoBehaviour:
   - {x: 1.4169295, y: -7.7670264, z: 0}
   m_ShapePathHash: -185056042
   m_Mesh: {fileID: 0}
-  m_InstanceId: 65018
+  m_InstanceId: 61106
 --- !u!1 &7566034405609395786
 GameObject:
   m_ObjectHideFlags: 0
@@ -600,7 +600,9 @@ MonoBehaviour:
   IsGrounded: 0
   MoveSpeed: 14.49
   absenButton: {fileID: 2240574380136496661}
+  absenText: {fileID: 6383809003215017497}
   absen: {fileID: 5858300109688765048}
+  isDosen: 0
 --- !u!95 &7566034405609395777
 Animator:
   serializedVersion: 3
