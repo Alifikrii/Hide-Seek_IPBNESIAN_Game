@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
         myPv = GetComponent<PhotonView>();
         myPv.RPC("RPC_spawnAll", RpcTarget.All);
         myPv.RPC("RPC_LobyMessage", RpcTarget.AllBufferedViaServer);
-
+        
     }
 
     // spawn all player

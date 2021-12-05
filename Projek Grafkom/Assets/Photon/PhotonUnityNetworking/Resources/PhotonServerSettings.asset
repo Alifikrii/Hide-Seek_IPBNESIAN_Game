@@ -48,6 +48,10 @@ MonoBehaviour:
   - RPC_setColorName
   - SetDosen
   - RPC_SetDosen
+  - RPC_KillButtonClicked
+  - RPC_AbsenButtonClicked
+  - RPC_AlpaButtonClicked
+  - RPC_HadirButtonClicked
   DisableAutoOpenWizard: 1
   ShowSettings: 0
   DevRegionSetOnce: 1
