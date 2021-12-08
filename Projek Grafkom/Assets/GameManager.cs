@@ -8,6 +8,8 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks {
     public GameObject PlayerPrefab;
+    // public GameObject[] nAbsen;
+    // public GameObject[] nHadir;
     public GameObject GameCanvas;
     public GameObject SceneCamera;
     public Text PingText;
@@ -24,6 +26,12 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public Text HostText;
 
     public MasterClient masterClient;
+
+
+//ini untuk mengetahui jumlah oplayrt yang alpa dan hadir
+    public Text nAlpa;
+    public Text nHadir;
+
     
     private void Update() {
         PingText.text = "ping : " + PhotonNetwork.GetPing() + "ms";
@@ -46,6 +54,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
             startButton.interactable = false;
         }
         
+        
         CheckInput();
         AddAllActivePlayers();
     }
@@ -61,6 +70,8 @@ public class GameManager : MonoBehaviourPunCallbacks {
 
          pList.text = playerList.ToString();
      }
+     
+    
     
 
     private void Awake() {
@@ -85,6 +96,13 @@ public class GameManager : MonoBehaviourPunCallbacks {
     }
    
     public void CheckInput() {
+
+        // if(Input.GetKeyDown(KeyCode.Return))
+        // {
+        //     nHadir.text = "Hadir :" + masterClient.GetHadir();
+        //     nAlpa.text = "Alpa :" + masterClient.GetAlpa();
+        // }
+
         if(off && Input.GetKeyDown(KeyCode.Escape))
         {
             DisconnectUI.SetActive(false);

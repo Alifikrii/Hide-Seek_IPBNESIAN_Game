@@ -23,7 +23,7 @@ public class MasterClient : MonoBehaviourPunCallbacks {
             players = GameObject.FindGameObjectsWithTag("Teman");
             tries++;
             yield return new WaitForSeconds(0.25f);
-        } while ((players.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 5);
+        } while ((players.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
         
         // Initialize the player index list\
         for(int i =0; i< players.Length; i++){
@@ -35,5 +35,29 @@ public class MasterClient : MonoBehaviourPunCallbacks {
         // playerIndex.Remove(DosenIndexTerpilih);
         PhotonView pv = players[DosenIndexTerpilih].GetComponent<PhotonView>();
         pv.RPC("RPC_SetDosen", RpcTarget.All, DosenIndexTerpilih);
+    }
+
+    public IEnumerator GetHadir() {
+        GameObject[] hadir;
+        int tries =0;
+        // get alll the player in the room
+        do {
+            hadir = GameObject.FindGameObjectsWithTag("Hadir");
+            tries++;
+            yield return new WaitForSeconds(0.25f);
+        } while ((hadir.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
+        yield return hadir.Length;
+    }
+
+    public IEnumerator GetAlpa() {
+        GameObject[] alpa;
+        int tries =0;
+        // get alll the player in the room
+        do {
+            alpa = GameObject.FindGameObjectsWithTag("Alpa");
+            tries++;
+            yield return new WaitForSeconds(0.25f);
+        } while ((alpa.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
+        yield return alpa.Length;
     }
 }

@@ -18,10 +18,14 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     public bool IsGrounded = false;
     public float MoveSpeed;
 
-    public Button absenButton;
-    public Text absenText;
-    public GameObject absen;
+    public Button alpaButton;
+    public Button hadirButton;
+    public GameObject alpaBtn;
+    public GameObject hadirBtn;
+    // public Text absenText;
+    // public GameObject absen;
     private static Collider2D Lain;
+    // public PhotonView MyPvw;
     // public GameObject Kiilled;
 
 
@@ -37,8 +41,9 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
 
     private void Awake() {
         TampilanPhoton = GetComponent<PhotonView>();
-        
+    
         if (TampilanPhoton.IsMine) {
+
             PlayerCamera.SetActive(true);
             lampu.SetActive(true);
             PlayerNameText.text = PhotonNetwork.NickName;
@@ -57,17 +62,22 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     private void Update() {
         
         if(TampilanPhoton.IsMine) {
-            absen.SetActive(true);
+            // absen.SetActive(true);
             
             CheckInput();
+            // CheckAlpa();
             // Kalau Dosen warnanya merah
-            if(isDosen==true) {
-                absenText.text = "ALPA";
-                absenText.color = Color.red;
+            // if(isDosen==true) {
+            if (gameObject.tag == "Dosen") {
+                hadirBtn.SetActive(false);
+                alpaBtn.SetActive(true);
+                // absenText.text = "ALPA";
+                // absenText.color = Color.red;
             }
-            else {
-                absenText.text = "HADIR";
-                absenText.color = Color.green;
+            else if (gameObject.tag == "Teman") {
+                hadirBtn.SetActive(true);
+                // absenText.text = "HADIR";
+                // absenText.color = Color.green;
             }          
         }
     }
@@ -76,6 +86,23 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     private void CheckInput() {
         var move = new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
         transform.position += move * MoveSpeed * Time.deltaTime;
+
+        //Eksperiemn
+         if (Input.GetKeyDown(KeyCode.Return) && (alpaButton.interactable==true || hadirButton.interactable==true)) {
+            Debug.Log("ADA Enter");
+            if(isDosen==true) {
+                Debug.Log("Lain = " + Lain);
+                PlayerScript Dkt = Lain.GetComponent<PlayerScript>();
+                Debug.Log(Dkt);
+                Debug.Log(Dkt.TampilanPhoton.Owner.NickName);
+                Dkt.TampilanPhoton.RPC("RPC_AlpaButtonClicked",RpcTarget.All);
+            }
+            else {
+                Debug.Log("hadirji");
+                TampilanPhoton.RPC("RPC_HadirButtonClicked", RpcTarget.All);
+            }
+            // TampilanPhoton.RPC("FlipTrue", RpcTarget.All);
+        }
 
         if (Input.GetKeyDown(KeyCode.A)) {
             TampilanPhoton.RPC("FlipTrue", RpcTarget.All);
@@ -95,15 +122,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
         } 
     }
 
-    [PunRPC]
-    private void FlipTrue() {
-         sr.flipX = true;
-    }
 
-    [PunRPC]
-    private void FlipFalse() {
-         sr.flipX = false;
-    }
 
     //masih mau diperbaiki
     public void OnTriggerEnter2D(Collider2D other) {
@@ -112,18 +131,19 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
         // SetDekat(Dkt);
         // Debug.Log(Dkt.PlayerNameText);
         if(other.gameObject.tag=="Teman" && isDosen==true) {
-            absenButton.interactable = true;
+            alpaButton.interactable = true;
             Debug.Log("Alpa");
             Debug.Log(other.gameObject.tag);
         }
-        else if (other.gameObject.tag == "Dosen" && isDosen == false) {
-            absenButton.interactable = true;
+        else if (other.gameObject.tag == "Dosen" && isDosen == false && gameObject.tag == "Teman") {
+            hadirButton.interactable = true;
             Debug.Log("Hadir");
             // StatusText.text = "Hadir";
             Debug.Log(other.gameObject.tag);
         }
         else {
-            absenButton.interactable = false;
+            alpaButton.interactable = false;
+            hadirButton.interactable = false;
             Debug.Log(other.gameObject.tag);
         }
 
@@ -131,7 +151,8 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     }
 
     public void OnTriggerExit2D(Collider2D other) {
-            absenButton.interactable = false;
+            alpaButton.interactable = false;
+            hadirButton.interactable = false;
             Debug.Log("jauh");
        
     }
@@ -141,23 +162,59 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     //     Debug.Log("close : " + Dekat.TampilanPhoton.Owner.NickName);
     // }
 
-    public void tombolAbsen() {
-        // Debug.Log("MAti");
-        // PlayerScript Other = Session["Lain"];
-        Debug.Log(Lain);
-        PlayerScript Dkt = Lain.GetComponent<PlayerScript>();
-        Debug.Log(Dkt);
-        Debug.Log(Dkt.TampilanPhoton.Owner.NickName);
-            Dkt.TampilanPhoton.RPC("RPC_AlpaButtonClicked",RpcTarget.All);
+//Disini tombol dimatikan
+    // public void tombolAlpa() {
+    //     // Debug.Log("MAti");
+    //     // PlayerScript Other = Session["Lain"];
+
+
+
+    //     Debug.Log(Lain);
+    //     PlayerScript Dkt = Lain.GetComponent<PlayerScript>();
+    //     Debug.Log(Dkt);
+    //     Debug.Log(Dkt.TampilanPhoton.Owner.NickName);
+    //     Dkt.TampilanPhoton.RPC("RPC_AlpaButtonClicked",RpcTarget.All);
+
+
         
-        // if(TampilanPhoton.IsMine && isDosen==true) {
-            // Dkt.TampilanPhoton.RPC("RPC_AlpaButtonClicked",RpcTarget.All);
-        // }
-        // else if(TampilanPhoton.IsMine && isDosen!=true) {
-        //     PhotonView MyPview = TampilanPhoton.GetComponent<PhotonView>();
-        //     MyPview.RPC("RPC_HadirButtonClicked",RpcTarget.All);
-        //     Debug.Log(TampilanPhoton.Owner.NickName);
-        // }
+    //     // if(TampilanPhoton.IsMine && isDosen==true) {
+    //         // Dkt.TampilanPhoton.RPC("RPC_AlpaButtonClicked",RpcTarget.All);
+    //     // }
+    //     // else if(TampilanPhoton.IsMine && isDosen!=true) {
+    //     //     PhotonView MyPview = TampilanPhoton.GetComponent<PhotonView>();
+    //     //     MyPview.RPC("RPC_HadirButtonClicked",RpcTarget.All);
+    //     //     Debug.Log(TampilanPhoton.Owner.NickName);
+    //     // }
+    // }
+    // public void tombolHadir(){
+    //     // TampilanPhoton = GetComponent<PhotonView>();
+
+
+    //     if(TampilanPhoton.IsMine){
+    //         // TampilanPhoton.GetComponent<PhotonView>();
+    //         // MyPvw.RPC("RPC_HadirButtonClicked",RpcTarget.All);
+    //         Debug.Log("ADA");
+
+
+    //         // Debug.Log("Hadir Bang");
+    //     }
+        //     return;
+        // TampilanPhoton = TampilanPhoton.GetComponent<PhotonView>();
+        // 
+        // StatusText.text = "Hadir";
+        // StatusText.color = Color.green;
+        // status.SetActive(true);
+        // gameObject.tag = "Selesai";
+    // }
+
+        [PunRPC]
+    private void FlipTrue() {
+         sr.flipX = true;
+    }
+
+    [PunRPC]
+    private void FlipFalse() {
+         sr.flipX = false;
     }
 
     [PunRPC]
@@ -166,16 +223,20 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
         // PlayerScript Ini = GetComponent<PlayerScript>();
         // Debug.Log(Ini.status);
         // Ini.status.SetActive(true);
+        
         status.SetActive(true);
-        gameObject.tag = "Selesai";
+        gameObject.tag = "Alpa";
+
     }
 
     [PunRPC]
     public void RPC_HadirButtonClicked() {
+        Debug.Log("Berrhasil");
         StatusText.text = "Hadir";
         StatusText.color = Color.green;
         status.SetActive(true);
-        gameObject.tag = "Selesai";
+        gameObject.tag = "Hadir";
+        // gameObject.tag = "Selesai";
     }
 
 

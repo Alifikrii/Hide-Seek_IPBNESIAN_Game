@@ -9,6 +9,8 @@ TagManager:
   - Dosen
   - Tembok
   - Selesai
+  - Hadir
+  - Alpa
   layers:
   - Default
   - TransparentFX
