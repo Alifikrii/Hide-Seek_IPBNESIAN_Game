@@ -7,7 +7,7 @@
 ## Story Summary
 Mah
 
-##Role Dalam Permainan
+## Role Dalam Permainan
 1. Dosen: Mencari Mahasiswa yang akan melakukan absen. Ketika berjarak sangat dekat dengan mahasiswa maka tombol "Alpa" akan aktif, lalu dengan cepat tekan "Enter" pada keyboard anda
 2. Mahasiswa: Mencari dosen untuk melakukan absen. Ketika berjarak sangat dekat dengan dosen maka tomobol "Hadir" akan aktif, lalu dengan cepat tekan tombol "Enter" pada keyboard anda
 
