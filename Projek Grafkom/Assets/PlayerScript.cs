@@ -28,6 +28,10 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     // public PhotonView MyPvw;
     // public GameObject Kiilled;
 
+//Musik Game
+    public GameObject AudioAIM;
+    public GameObject AudioHadir;
+    public GameObject AudioALPA;
 
     // public MasterClient masterClient;
 
@@ -36,7 +40,9 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     public bool isAlpa = false;
     // public int jadiDosen;
     public GameObject status;
+    public GameObject Roles;
     public Text StatusText;
+    public Text role;
 
 
     private void Awake() {
@@ -63,11 +69,24 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
         
         if(TampilanPhoton.IsMine) {
             // absen.SetActive(true);
+            Roles.SetActive(true);
             
             CheckInput();
             // CheckAlpa();
             // Kalau Dosen warnanya merah
             // if(isDosen==true) {
+            if(gameObject.tag == "Dosen")
+            {
+
+                role.color = Color.red;
+                role.text = "Role Dosen";
+            }
+            else if(gameObject.tag != "Dosen")
+            {
+                role.color = Color.green;
+                role.text = "Role Mahasiswa";
+            }
+
             if (gameObject.tag == "Dosen") {
                 hadirBtn.SetActive(false);
                 alpaBtn.SetActive(true);
@@ -96,12 +115,18 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
                 Debug.Log(Dkt);
                 Debug.Log(Dkt.TampilanPhoton.Owner.NickName);
                 Dkt.TampilanPhoton.RPC("RPC_AlpaButtonClicked",RpcTarget.All);
+                AudioHadir.SetActive(true);
             }
             else {
                 Debug.Log("hadirji");
                 TampilanPhoton.RPC("RPC_HadirButtonClicked", RpcTarget.All);
+                AudioHadir.SetActive(true);
             }
             // TampilanPhoton.RPC("FlipTrue", RpcTarget.All);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Return)) {
+            AudioAIM.SetActive(true);
         }
 
         if (Input.GetKeyDown(KeyCode.A)) {
@@ -154,7 +179,9 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
             alpaButton.interactable = false;
             hadirButton.interactable = false;
             Debug.Log("jauh");
-       
+            AudioAIM.SetActive(false);
+            AudioALPA.SetActive(false);
+            AudioHadir.SetActive(false);
     }
 
     // public void SetDekat(PlayerScript close){
@@ -226,6 +253,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
         
         status.SetActive(true);
         gameObject.tag = "Alpa";
+        AudioALPA.SetActive(true);
 
     }
 

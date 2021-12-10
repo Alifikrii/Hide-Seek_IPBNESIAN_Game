@@ -37,27 +37,27 @@ public class MasterClient : MonoBehaviourPunCallbacks {
         pv.RPC("RPC_SetDosen", RpcTarget.All, DosenIndexTerpilih);
     }
 
-    public IEnumerator GetHadir() {
-        GameObject[] hadir;
-        int tries =0;
-        // get alll the player in the room
-        do {
-            hadir = GameObject.FindGameObjectsWithTag("Hadir");
-            tries++;
-            yield return new WaitForSeconds(0.25f);
-        } while ((hadir.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
-        yield return hadir.Length;
-    }
+    // public IEnumerator GetHadir() {
+    //     GameObject[] hadir;
+    //     int tries =0;
+    //     // get alll the player in the room
+    //     do {
+    //         hadir = GameObject.FindGameObjectsWithTag("Hadir");
+    //         tries++;
+    //         yield return new WaitForSeconds(0.25f);
+    //     } while ((hadir.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
+    //     yield return hadir.Length;
+    // }
 
-    public IEnumerator GetAlpa() {
-        GameObject[] alpa;
-        int tries =0;
-        // get alll the player in the room
-        do {
-            alpa = GameObject.FindGameObjectsWithTag("Alpa");
-            tries++;
-            yield return new WaitForSeconds(0.25f);
-        } while ((alpa.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
-        yield return alpa.Length;
-    }
+    // public IEnumerator GetAlpa() {
+    //     GameObject[] alpa;
+    //     int tries =0;
+    //     // get alll the player in the room
+    //     do {
+    //         alpa = GameObject.FindGameObjectsWithTag("Alpa");
+    //         tries++;
+    //         yield return new WaitForSeconds(0.25f);
+    //     } while ((alpa.Length < PhotonNetwork.CurrentRoom.PlayerCount) && tries < 10);
+    //     yield return alpa.Length;
+    // }
 }

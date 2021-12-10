@@ -11,6 +11,9 @@ public class MenuController : MonoBehaviourPunCallbacks
 {
     [SerializeField] private string VersioName = "0.1";
     [SerializeField] private GameObject UsernameMenu;
+    [SerializeField] private GameObject ControlInfo;
+    [SerializeField] private GameObject Panduan;
+    [SerializeField] private GameObject Credits;
     [SerializeField] private GameObject ConnectPanel;
 
     [SerializeField] private InputField UsernameInput;
@@ -69,6 +72,25 @@ public class MenuController : MonoBehaviourPunCallbacks
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 5;
         PhotonNetwork.JoinOrCreateRoom (JoinGameInput.text, roomOptions, TypedLobby.Default);
+    }
+
+    public void PanduanPermainan(){
+        ControlInfo.SetActive(false);
+        Panduan.SetActive(true);
+        
+    }
+
+    public void ManControl(){
+        ControlInfo.SetActive(true);
+    }
+    public void CreditsDev(){
+
+        Credits.SetActive(true);
+    }
+
+    public void keluarPanduCredit(){
+        Credits.SetActive(false);
+        Panduan.SetActive(false);
     }
 
     public override void OnJoinedRoom()

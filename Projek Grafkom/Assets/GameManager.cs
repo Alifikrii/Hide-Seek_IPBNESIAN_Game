@@ -27,13 +27,28 @@ public class GameManager : MonoBehaviourPunCallbacks {
 
     public MasterClient masterClient;
 
+//Audio game
+    public GameObject MusikIngame;
+    public GameObject AudioDeploy;
+    public GameObject AudioEND;
+
 
 //ini untuk mengetahui jumlah oplayrt yang alpa dan hadir
     public Text nAlpa;
     public Text nHadir;
+    public Text nPlayer;
+    private float CountAlpa;
+    private float CountHadir;
+    private float CountPlayer;
+
+    public GameObject Result;
+    public Text ResultText;
+
+
 
     
     private void Update() {
+        myPv = GetComponent<PhotonView>();
         PingText.text = "ping : " + PhotonNetwork.GetPing() + "ms";
         // JumlahPlayerdiLoby.text = "Jumlah Player : "+ PhotonNetwork.CurrentRoom.PlayerCount;
         NamaRoom.text = "LOBBY : " + PhotonNetwork.CurrentRoom.Name;
@@ -44,7 +59,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
             PingText.color = Color.green;
         
         //jika ada 2 atau lebih player di dalam loby
-        if(PhotonNetwork.CurrentRoom.PlayerCount >= 2 && PhotonNetwork.IsMasterClient) {
+        if(PhotonNetwork.CurrentRoom.PlayerCount > 3 && PhotonNetwork.IsMasterClient) {
             startButton.interactable = true;
             HostText.text = "Tekan Start Untuk Memulai Game";
             HostText.color = Color.green;
@@ -53,10 +68,29 @@ public class GameManager : MonoBehaviourPunCallbacks {
         else if(PhotonNetwork.CurrentRoom.PlayerCount < 2) {
             startButton.interactable = false;
         }
+
+        CountPlayer = (GameObject.FindGameObjectsWithTag("Alpa").Length) + (GameObject.FindGameObjectsWithTag("Hadir").Length) + (GameObject.FindGameObjectsWithTag("Teman").Length)+1;
+
+        CountAlpa = GameObject.FindGameObjectsWithTag("Alpa").Length;
+        CountHadir = GameObject.FindGameObjectsWithTag("Hadir").Length;
         
+        nPlayer.text = "Player In Room : " +  CountPlayer;
+        nHadir.text = "Hadir : " +  CountHadir;
+        nAlpa.text = "Alpa : " + CountAlpa;
         
         CheckInput();
         AddAllActivePlayers();
+
+        if(CountHadir > ((CountPlayer-1)/2.0)) {
+            ClassSuccess();
+        }
+        else if((CountAlpa > ((CountPlayer-1)/2.0)) || ((CountAlpa+CountHadir == (CountPlayer-1)) && (CountAlpa == CountHadir) && (CountPlayer-1 > 0))) {
+            ClassDismis();
+        }
+        
+
+        
+        
     }
 
 //untuk list player
@@ -87,6 +121,8 @@ public class GameManager : MonoBehaviourPunCallbacks {
         PhotonNetwork.Instantiate(PlayerPrefab.name, randomPos, Quaternion.identity,0);
         // PhotonNetwork.Instantiate(plr, randomPos, Quaternion.identity,0);
         GameCanvas.SetActive(false);
+        MusikIngame.SetActive(true);
+        AudioDeploy.SetActive(true);
         SceneCamera.SetActive(false);
 
         // ini untuk menginisialisasi dosen
@@ -113,6 +149,24 @@ public class GameManager : MonoBehaviourPunCallbacks {
             DisconnectUI.SetActive(true);
             off=true;
         }
+    }
+
+    public void ClassSuccess(){
+        Result.SetActive(true);
+        MusikIngame.SetActive(false);
+        AudioEND.SetActive(true);
+        ResultText.color = Color.green;
+        ResultText.text = "Class Success";
+
+
+    }
+    public void ClassDismis(){
+        Result.SetActive(true);
+        MusikIngame.SetActive(false);
+        AudioEND.SetActive(true);
+        ResultText.color = Color.red;
+        ResultText.text = "Class Dismissed";
+
     }
 
     public void leaveRoom() {

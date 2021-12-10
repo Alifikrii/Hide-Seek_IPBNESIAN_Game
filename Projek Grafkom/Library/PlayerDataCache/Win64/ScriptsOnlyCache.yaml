@@ -126,6 +126,12 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 74
       Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -133,23 +139,23 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 1602}
-    - Class: 114
       Script: {instanceID: 1604}
     - Class: 114
       Script: {instanceID: 1606}
     - Class: 114
-      Script: {instanceID: 2746}
+      Script: {instanceID: 1608}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 2748}
     - Class: 114
-      Script: {instanceID: 3150}
+      Script: {instanceID: 3138}
     - Class: 114
-      Script: {instanceID: 3226}
+      Script: {instanceID: 3152}
     - Class: 114
-      Script: {instanceID: 3240}
+      Script: {instanceID: 3228}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3242}
+    - Class: 114
+      Script: {instanceID: 3308}
     - Class: 114
       Script: {instanceID: 3854}
     - Class: 114
@@ -217,6 +223,10 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 82
+      Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 90
       Script: {instanceID: 0}
     - Class: 91
@@ -225,8 +235,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
-    - Class: 114
-      Script: {instanceID: 1600}
     - Class: 114
       Script: {instanceID: 1602}
     - Class: 114
@@ -240,33 +248,35 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1612}
     - Class: 114
-      Script: {instanceID: 1620}
+      Script: {instanceID: 1614}
     - Class: 114
-      Script: {instanceID: 1684}
+      Script: {instanceID: 1622}
     - Class: 114
-      Script: {instanceID: 1762}
+      Script: {instanceID: 1686}
     - Class: 114
-      Script: {instanceID: 1844}
+      Script: {instanceID: 1764}
     - Class: 114
-      Script: {instanceID: 2406}
+      Script: {instanceID: 1846}
     - Class: 114
-      Script: {instanceID: 2504}
+      Script: {instanceID: 2408}
     - Class: 114
-      Script: {instanceID: 2746}
+      Script: {instanceID: 2506}
     - Class: 114
-      Script: {instanceID: 2992}
+      Script: {instanceID: 2748}
     - Class: 114
-      Script: {instanceID: 3136}
+      Script: {instanceID: 2994}
     - Class: 114
-      Script: {instanceID: 3150}
+      Script: {instanceID: 3138}
     - Class: 114
-      Script: {instanceID: 3240}
+      Script: {instanceID: 3152}
     - Class: 114
-      Script: {instanceID: 3306}
+      Script: {instanceID: 3242}
     - Class: 114
-      Script: {instanceID: 3378}
+      Script: {instanceID: 3308}
     - Class: 114
-      Script: {instanceID: 3468}
+      Script: {instanceID: 3380}
+    - Class: 114
+      Script: {instanceID: 3470}
     - Class: 114
       Script: {instanceID: 3602}
     - Class: 114
@@ -836,7 +846,7 @@ ScriptsOnlyBuild:
     className: PlayerDetailsController
   - hash:
       serializedVersion: 2
-      Hash: 9263df5a632639954d6fd606f4b8e5c4
+      Hash: c7e54f45db4df35383db8b8a3c55bd68
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1382,7 +1392,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector3
   - hash:
       serializedVersion: 2
-      Hash: f387515ed2249872271a0f600f92b375
+      Hash: 34bbb59a686fd5b921faae850633ce28
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerScript
@@ -2126,7 +2136,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: eda7783813d7b2af6c54a867c9af4dc6
+      Hash: 57a03aebae52edea57c6e54d3fc20465
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuController
@@ -2200,4 +2210,5 @@ ScriptsOnlyBuild:
   scenePathNames:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/MainGame.unity
-  playerPath: G:/My Drive/kuliah s5/Grafkom/projekGame/BaruLagi/My project.exe
+  playerPath: G:/My Drive/kuliah s5/Grafkom/projekGame/Hide&Seek IPBNesian/Hide&Seek
+    IPBNesian.exe
