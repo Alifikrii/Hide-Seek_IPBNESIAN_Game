@@ -15,8 +15,6 @@ ScriptsOnlyBuild:
     - Photon.Pun.Demo.PunBasics.PlayerUI
     - Photon.Pun.Demo.SlotRacer.PlayerControl
     - Photon.Pun.Demo.SlotRacer.Utils.SplineWalker
-    PhotonUnityNetworking.Editor.dll:
-    - Photon.Pun.PunSceneSettings
     PhotonUnityNetworking.dll:
     - Photon.Pun.PhotonAnimatorView
     - Photon.Pun.PhotonRigidbodyView
@@ -27,6 +25,7 @@ ScriptsOnlyBuild:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
+    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
@@ -846,7 +845,7 @@ ScriptsOnlyBuild:
     className: PlayerDetailsController
   - hash:
       serializedVersion: 2
-      Hash: c7e54f45db4df35383db8b8a3c55bd68
+      Hash: 88d20842c470b69c73454c803f3d1696
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: GameManager
@@ -1392,7 +1391,7 @@ ScriptsOnlyBuild:
     className: DebugUIHandlerVector3
   - hash:
       serializedVersion: 2
-      Hash: 34bbb59a686fd5b921faae850633ce28
+      Hash: 51759f11b78c83a5ead43c027e45d2bf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerScript
@@ -2136,7 +2135,7 @@ ScriptsOnlyBuild:
     className: PunTurnManager
   - hash:
       serializedVersion: 2
-      Hash: 57a03aebae52edea57c6e54d3fc20465
+      Hash: 5434a5ec232b80852d27c170043438ef
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: MenuController

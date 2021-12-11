@@ -8,9 +8,7 @@ using Photon.Realtime;
 
 public class GameManager : MonoBehaviourPunCallbacks {
     public GameObject PlayerPrefab;
-    // public GameObject[] nAbsen;
-    // public GameObject[] nHadir;
-    public GameObject GameCanvas;
+    public GameObject SpawnCanvas;
     public GameObject SceneCamera;
     public Text PingText;
     public Text NamaRoom;
@@ -22,18 +20,18 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public Button startButton;
     public PhotonView myPv;
 
-    //ktext tunggu host memulai game
+    //text tunggu host memulai game
     public Text HostText;
 
     public MasterClient masterClient;
 
-//Audio game
+    //Audio game
     public GameObject MusikIngame;
     public GameObject AudioDeploy;
     public GameObject AudioEND;
 
 
-//ini untuk mengetahui jumlah oplayrt yang alpa dan hadir
+    //ini untuk mengetahui jumlah player yang alpa dan hadir
     public Text nAlpa;
     public Text nHadir;
     public Text nPlayer;
@@ -41,6 +39,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
     private float CountHadir;
     private float CountPlayer;
 
+    //Ini untuk menampilkan hasil permainan 
     public GameObject Result;
     public Text ResultText;
 
@@ -50,25 +49,26 @@ public class GameManager : MonoBehaviourPunCallbacks {
     private void Update() {
         myPv = GetComponent<PhotonView>();
         PingText.text = "ping : " + PhotonNetwork.GetPing() + "ms";
-        // JumlahPlayerdiLoby.text = "Jumlah Player : "+ PhotonNetwork.CurrentRoom.PlayerCount;
         NamaRoom.text = "LOBBY : " + PhotonNetwork.CurrentRoom.Name;
-
         if(PhotonNetwork.GetPing()>90)
             PingText.color = Color.red;
         else
             PingText.color = Color.green;
         
-        //jika ada 2 atau lebih player di dalam loby
+        //Tombol start hanya akan aktif ketika ada 4 player yang bergabung kedalam room 
+        // Tombol start hanya akan aktif pada player yang membuat room (MasterClient)
         if(PhotonNetwork.CurrentRoom.PlayerCount > 3 && PhotonNetwork.IsMasterClient) {
             startButton.interactable = true;
             HostText.text = "Tekan Start Untuk Memulai Game";
             HostText.color = Color.green;
-
         }
-        else if(PhotonNetwork.CurrentRoom.PlayerCount < 2) {
+        else if(PhotonNetwork.CurrentRoom.PlayerCount <= 3) {
             startButton.interactable = false;
         }
 
+        // Menghitung banyaknya player yang ada di dalam room 
+        // banyaknya player yang alpa
+        // dan banyaknya plaayer yang hadir
         CountPlayer = (GameObject.FindGameObjectsWithTag("Alpa").Length) + (GameObject.FindGameObjectsWithTag("Hadir").Length) + (GameObject.FindGameObjectsWithTag("Teman").Length)+1;
 
         CountAlpa = GameObject.FindGameObjectsWithTag("Alpa").Length;
@@ -78,67 +78,58 @@ public class GameManager : MonoBehaviourPunCallbacks {
         nHadir.text = "Hadir : " +  CountHadir;
         nAlpa.text = "Alpa : " + CountAlpa;
         
-        CheckInput();
-        AddAllActivePlayers();
-
+        // Penentuan game berakhir
+        // ketika yang hadir lebih dari 50% maka kelas suskes
+        // Ketika yang alpa lebih atau sama dengan 50% maka kelas dibubarkan 
         if(CountHadir > ((CountPlayer-1)/2.0)) {
             ClassSuccess();
         }
         else if((CountAlpa > ((CountPlayer-1)/2.0)) || ((CountAlpa+CountHadir == (CountPlayer-1)) && (CountAlpa == CountHadir) && (CountPlayer-1 > 0))) {
             ClassDismis();
         }
-        
 
-        
-        
+        // Untuk mengecek apakah player menekan tombol esc untuk keluar dari permainan
+        CheckInput();
+
+        //Untuk menampilkan list player yang bergabung didalam loby sebelum permainan dimulai oleh masterclient
+        AddAllActivePlayers();
     }
 
-//untuk list player
+//untuk list player didalam loby
     public void AddAllActivePlayers() {
-         var playerList = new StringBuilder();
-         Dictionary<int, Photon.Realtime.Player> playerl = Photon.Pun.PhotonNetwork.CurrentRoom.Players;
-         foreach (KeyValuePair<int, Photon.Realtime.Player> p in playerl) {
-             
+        var playerList = new StringBuilder();
+        Dictionary<int, Photon.Realtime.Player> playerl = Photon.Pun.PhotonNetwork.CurrentRoom.Players;
+        foreach (KeyValuePair<int, Photon.Realtime.Player> p in playerl) {
             playerList.Append(p.Value.NickName + "\n"); 
-         }
-
-         pList.text = playerList.ToString();
+        }
+        pList.text = playerList.ToString();
      }
      
-    
-    
-
+//ketika player memasuki room makka Spawn canvas akan aktif
     private void Awake() {
-        GameCanvas.SetActive(true);
+        SpawnCanvas.SetActive(true);
     }
 
+// ketika tombol start ditekan maka akan memanggil fungsi spawn player untuk menetukan role setiap player 
+//dan instansiasi semua player yang teelah ada didalam loby ke peermainan
     public void SpawnPlayer() {
-        
-        // Debug.Log("adakok");
-        float randomValue = Random.Range(-1f, 1f);
-        // PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f,5f,0f), Quaternion.identity, 0);
-        Vector2 randomPos = new Vector2(this.transform.position.x *randomValue, this.transform.position.y *randomValue);
-        PhotonNetwork.Instantiate(PlayerPrefab.name, randomPos, Quaternion.identity,0);
-        // PhotonNetwork.Instantiate(plr, randomPos, Quaternion.identity,0);
-        GameCanvas.SetActive(false);
-        MusikIngame.SetActive(true);
-        AudioDeploy.SetActive(true);
-        SceneCamera.SetActive(false);
 
         // ini untuk menginisialisasi dosen
         if(PhotonNetwork.IsMasterClient) {
             masterClient.Initialize();
         }
+
+        float randomValue = Random.Range(-1f, 1f);
+        // PhotonNetwork.Instantiate(this.PlayerPrefab.name, new Vector3(0f,5f,0f), Quaternion.identity, 0);
+        Vector2 randomPos = new Vector2(this.transform.position.x *randomValue, this.transform.position.y *randomValue);
+        PhotonNetwork.Instantiate(PlayerPrefab.name, randomPos, Quaternion.identity,0);
+        SpawnCanvas.SetActive(false);
+        MusikIngame.SetActive(true);
+        AudioDeploy.SetActive(true);
+        SceneCamera.SetActive(false);
     }
    
     public void CheckInput() {
-
-        // if(Input.GetKeyDown(KeyCode.Return))
-        // {
-        //     nHadir.text = "Hadir :" + masterClient.GetHadir();
-        //     nAlpa.text = "Alpa :" + masterClient.GetAlpa();
-        // }
-
         if(off && Input.GetKeyDown(KeyCode.Escape))
         {
             DisconnectUI.SetActive(false);
@@ -157,16 +148,14 @@ public class GameManager : MonoBehaviourPunCallbacks {
         AudioEND.SetActive(true);
         ResultText.color = Color.green;
         ResultText.text = "Class Success";
-
-
     }
+
     public void ClassDismis(){
         Result.SetActive(true);
         MusikIngame.SetActive(false);
         AudioEND.SetActive(true);
         ResultText.color = Color.red;
         ResultText.text = "Class Dismissed";
-
     }
 
     public void leaveRoom() {
@@ -179,7 +168,6 @@ public class GameManager : MonoBehaviourPunCallbacks {
         myPv = GetComponent<PhotonView>();
         myPv.RPC("RPC_spawnAll", RpcTarget.All);
         myPv.RPC("RPC_LobyMessage", RpcTarget.AllBufferedViaServer);
-        
     }
 
     // spawn all player
@@ -188,6 +176,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
         SpawnPlayer();
     }
 
+    //Massage ini dipanggil ketika game telah berlangsung dan ada player yang memasuki room
     [PunRPC]
     public void RPC_LobyMessage() {
         HostText.text = "Tidak dapat Bergabung, Game Sedang Berlangsung";

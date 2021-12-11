@@ -12,21 +12,14 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] private string VersioName = "0.1";
     [SerializeField] private GameObject UsernameMenu;
     [SerializeField] private GameObject ControlInfo;
-    [SerializeField] private GameObject Panduan;
+    [SerializeField] private GameObject Role;
+    [SerializeField] private GameObject Rules;
     [SerializeField] private GameObject Credits;
     [SerializeField] private GameObject ConnectPanel;
-
     [SerializeField] private InputField UsernameInput;
     [SerializeField] private InputField CreateGameInput;
     [SerializeField] private InputField JoinGameInput;
-
     [SerializeField] private GameObject StartButton;
-
-
-    // private void Awake()
-    // {
-        
-    // }
 
     private void Start()
     {
@@ -36,14 +29,13 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     public void OnConectedToMaster()
     {
-        // PhotonNetwork.automaticallySyncScene = true;
-
         //untuk sync semua player di satu scene yang sama
         PhotonNetwork.AutomaticallySyncScene = true;
         PhotonNetwork.JoinLobby();
         Debug.Log("Connected");
     }
 
+//Untuk mengecek apakah username yang dimasukkan lebih dari atau sama dengan 3 karater
     public void ChangeUsernameInput()
     {
         if (UsernameInput.text.Length >= 3)
@@ -62,6 +54,7 @@ public class MenuController : MonoBehaviourPunCallbacks
         PhotonNetwork.NickName = UsernameInput.text;
     }
 
+//untuk membuat room dengan masimal 10 player
     public void CreateGame()
     {
         PhotonNetwork.CreateRoom(CreateGameInput.text, new RoomOptions() {MaxPlayers = 10}, null);
@@ -74,9 +67,22 @@ public class MenuController : MonoBehaviourPunCallbacks
         PhotonNetwork.JoinOrCreateRoom (JoinGameInput.text, roomOptions, TypedLobby.Default);
     }
 
-    public void PanduanPermainan(){
+//ketika join room ditekan maka akan masuk kedalam loby
+    public override void OnJoinedRoom()
+    {
+        PhotonNetwork.LoadLevel("MainGame");
+    }
+
+
+//Menampilkan info permainian dan credits
+    public void RoleInfo(){
         ControlInfo.SetActive(false);
-        Panduan.SetActive(true);
+        Role.SetActive(true);
+        
+    }
+    public void RulesInfo(){
+        Role.SetActive(false);
+        Rules.SetActive(true);
         
     }
 
@@ -90,15 +96,7 @@ public class MenuController : MonoBehaviourPunCallbacks
 
     public void keluarPanduCredit(){
         Credits.SetActive(false);
-        Panduan.SetActive(false);
+        Role.SetActive(false);
+        Rules.SetActive(false);
     }
-
-    public override void OnJoinedRoom()
-    {
-        PhotonNetwork.LoadLevel("MainGame");
-        // PhotonNetwork.LoadLevel("Lobby");
-    }
-
-
-
 }
