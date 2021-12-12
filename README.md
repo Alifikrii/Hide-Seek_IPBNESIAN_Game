@@ -5,7 +5,8 @@
 3. Risda Awalia G6419106
 
 ## Story Summary
-Mah
+Di suatu pagi di kampus IPB, para mahasiswa baru saja akan memulai kegiatan perkuliahannya. Namun sebelum itu, mereka harus melakukan presensi dengan cara menemukan dosen untuk menyatakan bahwa mahasiswa tersebut hadir dalam perkuliahan. Mahasiswa yang datang lebih cepat dapat mengisi presensi dan dinyatakan hadir, namun tak jarang, jika dosen yang menemukan mahasiswa duluan maka dapat langsung dinyatakan bahwa mahasiswa tersebut alfa/tidak hadir.
+
 
 ## Role Dalam Permainan
 1. Dosen: Mencari Mahasiswa yang akan melakukan absen. Ketika berjarak sangat dekat dengan mahasiswa maka tombol "Alpa" akan aktif, lalu dengan cepat tekan "Enter" pada keyboard anda
