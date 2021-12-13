@@ -37,5 +37,5 @@ Menemukan mahasiswa/dosen dengan cepat untuk melakukan presensi/alpa
 ![Screenshot (639)](https://user-images.githubusercontent.com/79049671/145777056-c3229b48-66e2-42fe-96c9-06da7b3f4667.png)
 
 ## Informasi Proyek:
-1. Video Demo:
-2. Laporan Proyek: 
+1. Video Demo: https://ipb.link/video-demo-hide-and-seek-ipbnesian 
+2. Laporan Proyek: https://ipb.link/laporan-grafkom-kel17-hide-and-seek-ipbnesian
