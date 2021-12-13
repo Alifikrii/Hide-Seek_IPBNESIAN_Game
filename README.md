@@ -1,11 +1,11 @@
-# Hide and Seek IPBNesian
+# Hide & Seek IPBNesian
 ## Kelompok 17
 1. Andi Muhammad Alifikri G64190006
 2. Amira Nabila Rakhmat G64190011
 3. Risda Awalia G6419106
 
 ## Story Summary
-Di suatu pagi di kampus IPB, para mahasiswa baru saja akan memulai kegiatan perkuliahannya. Namun sebelum itu, mereka harus melakukan presensi dengan cara menemukan dosen untuk menyatakan bahwa mahasiswa tersebut hadir dalam perkuliahan. Mahasiswa yang datang lebih cepat dapat mengisi presensi dan dinyatakan hadir, namun tak jarang, jika dosen yang menemukan mahasiswa duluan maka dapat langsung dinyatakan bahwa mahasiswa tersebut alfa/tidak hadir.
+Disuatu hari di kampus IPB University, para mahasiswa baru saja akan memulai kegiatan perkuliahannya. Namun sebelum itu, mereka harus melakukan presensi dengan cara menemukan dosen untuk menyatakan bahwa mahasiswa tersebut hadir dalam perkuliahan. Mahasiswa yang datang lebih cepat dapat mengisi presensi dan dinyatakan hadir, namun tak jarang, jika dosen yang menemukan mahasiswa lebih dulu maka dapat langsung dinyatakan bahwa mahasiswa tersebut alpa/tidak hadir.
 
 
 ## Role Dalam Permainan
