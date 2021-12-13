@@ -39,5 +39,3 @@ Menemukan mahasiswa/dosen dengan cepat untuk melakukan presensi/alpa
 ## Informasi Proyek:
 1. Video Demo:
 2. Laporan Proyek: 
-
-
