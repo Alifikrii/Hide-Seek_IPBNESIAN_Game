@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         //untuk sync semua player di satu scene yang sama
         PhotonNetwork.AutomaticallySyncScene = true;
-        PhotonNetwork.JoinLobby();
+        PhotonNetwork.JoinLobby(TypedLobby.Default);
         Debug.Log("Connected");
     }
 
@@ -63,7 +63,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void JoinGame()
     {
         RoomOptions roomOptions = new RoomOptions();
-        roomOptions.MaxPlayers = 5;
+        roomOptions.MaxPlayers = 10;
         PhotonNetwork.JoinOrCreateRoom (JoinGameInput.text, roomOptions, TypedLobby.Default);
     }
 

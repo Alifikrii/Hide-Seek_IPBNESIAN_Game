@@ -246,7 +246,6 @@ MonoBehaviour:
   sr: {fileID: 0}
   PlayerNameText: {fileID: 0}
   lampu: {fileID: 0}
-  IsGrounded: 0
   MoveSpeed: 0
   alpaButton: {fileID: 0}
   hadirButton: {fileID: 0}
@@ -917,7 +916,7 @@ MonoBehaviour:
   - {x: 1.4169295, y: -7.7670264, z: 0}
   m_ShapePathHash: -185056042
   m_Mesh: {fileID: 0}
-  m_InstanceId: 59640
+  m_InstanceId: 33850
 --- !u!1 &7112646263714550551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,8 +1199,7 @@ MonoBehaviour:
   sr: {fileID: 7566034405609395789}
   PlayerNameText: {fileID: 8318878405054856234}
   lampu: {fileID: 7566034405964555760}
-  IsGrounded: 0
-  MoveSpeed: 14.49
+  MoveSpeed: 11
   alpaButton: {fileID: 2240574380136496661}
   hadirButton: {fileID: 4046653117228316759}
   alpaBtn: {fileID: 5858300109688765048}

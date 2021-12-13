@@ -122,7 +122,7 @@ MonoBehaviour:
   m_MinSize: {x: 679, y: 492}
   m_MaxSize: {x: 14002, y: 14042}
   vertical: 0
-  controlID: 56734
+  controlID: 9002
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -147,7 +147,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 492}
   m_MaxSize: {x: 10001, y: 14042}
   vertical: 1
-  controlID: 56735
+  controlID: 9003
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 403, y: 221}
   m_MaxSize: {x: 8003, y: 4021}
   vertical: 0
-  controlID: 56736
+  controlID: 9004
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -400,7 +400,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2e9ffeffa69ffeff1aa2feff1ea2feff5eb7feffccb8feff04bdfeff48befeffc0befeff34c1feff38c1feffa806ffffa407ffff7cd4ffff7ee3ffff48f6fffff8f6ffff3cfbfffff4500000425e0000ac5e0000d05e00002c5f0000305f00003a5f0000545f0000665f0000b65f00000a600000246000005ac50000bccb00000ecc000028cc00003ccc0000
+      m_ExpandedIDs: 4aa7ffffc2a7ffff3aaaffff42aaffffbeadffff76baffff36bcffffaebcffffc4bcffffc8bcffffccbfffff44c0ffffb8c2ffffbcc2ffff56cdffffcecdffffe4cdffffe8cdffffd4cfffff4cd0ffffc0d2ffffc4d2ffff64e6ffffdee6ffff52e9ffff56e9fffffef3ffff94f4ffff80f5ffffeef5ffff3cfbffff385d00004c5d0000325e00005e8d0000788d0000848d00008c8d0000728e000024a6000038a600006cb5000080b500002ac300008cc30000bac40000
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -460,9 +460,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: 981.41187, y: 429.68588, z: -21850.355}
+    m_Target: {x: 904.65735, y: 547.04944, z: -25821.44}
     speed: 2
-    m_Value: {x: 971.53253, y: 431.85403, z: -21846.92}
+    m_Value: {x: 904.65735, y: 547.04944, z: -25821.44}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -513,9 +513,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 911.5727
+    m_Target: 577.4651
     speed: 2
-    m_Value: 954.52637
+    m_Value: 577.4651
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -664,22 +664,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scenes/gambar
+    - Assets/Scenes
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Scenes/gambar
+  - Assets/Scenes
   m_LastFoldersGridSize: -1
   m_LastProjectPath: E:\Game Grafkom\projek_Grafkom_Smt5\Projek Grafkom
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 42540000
-    m_LastClickedID: 21570
-    m_ExpandedIDs: 0000000072520000a652000000ca9a3b
+    m_SelectedIDs: 44530000
+    m_LastClickedID: 21316
+    m_ExpandedIDs: 000000001053000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -707,7 +707,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 000000007252000000ca9a3b
+    m_ExpandedIDs: 000000001053000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

@@ -81,10 +81,10 @@ public class GameManager : MonoBehaviourPunCallbacks {
         // Penentuan game berakhir
         // ketika yang hadir lebih dari 50% maka kelas suskes
         // Ketika yang alpa lebih atau sama dengan 50% maka kelas dibubarkan 
-        if(CountHadir > ((CountPlayer-1)/2.0)) {
+        if((CountHadir > ((CountPlayer-1)/2.0)) && ((CountAlpa+CountHadir == (CountPlayer-1)) )) {
             ClassSuccess();
         }
-        else if((CountAlpa > ((CountPlayer-1)/2.0)) || ((CountAlpa+CountHadir == (CountPlayer-1)) && (CountAlpa == CountHadir) && (CountPlayer-1 > 0))) {
+        else if(((CountAlpa > ((CountPlayer-1)/2.0))&&((CountAlpa+CountHadir == (CountPlayer-1)))) || ((CountAlpa+CountHadir == (CountPlayer-1)) && (CountAlpa == CountHadir) && (CountPlayer-1 > 0))) {
             ClassDismis();
         }
 
