@@ -27,5 +27,17 @@ Menemukan mahasiswa/dosen dengan cepat untuk melakukan presensi/alpa
 ## Karakter Game
 ![WhatsApp Image 2021-12-10 at 17 02 06](https://user-images.githubusercontent.com/79049671/145558015-fc644038-ac16-4d5e-9ecb-8c2c16769bc6.jpeg)
 
+## Tampilan Ketika Mahasiswa Menang (Kelas Sukses)
+![Screenshot (640)](https://user-images.githubusercontent.com/79049671/145776812-8d634b8e-f257-49fc-8c64-9913e54f6bb4.png)
+
+## Tampilan Ketika Dosen Menang (Kelas Dibubarkan)
+![Screenshot (639)](https://user-images.githubusercontent.com/79049671/145777056-c3229b48-66e2-42fe-96c9-06da7b3f4667.png)
+
+## Informasi Proyek:
+1. Video Demo:
+2. Laporan Proyek: 
+
+
+
 ## Tampilan Multiplayer Dalam Game
 ![WhatsApp Image 2021-11-24 at 11 17 22](https://user-images.githubusercontent.com/79049671/145558349-5975c996-f423-4eca-89c3-471eadd5fb61.jpeg)
