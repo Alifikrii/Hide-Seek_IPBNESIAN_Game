@@ -17,12 +17,15 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
 
 // Menentukan kecepatan gerak player
     public float MoveSpeed;
+    public float JoyHorizon=0;
+    public float JoyVertical=0;
 
 //Tombol assign presensi
     public Button alpaButton;
     public Button hadirButton;
     public GameObject alpaBtn;
     public GameObject hadirBtn;
+    private static bool tekan = false;
 
 //Colider dengan other player
     private static Collider2D Lain;
@@ -42,9 +45,12 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
     public Text StatusText;
     public Text role;
 
+//Joystick
+    private Joystick joystick;
 
     private void Awake() {
         TampilanPhoton = GetComponent<PhotonView>();
+        joystick = FindObjectOfType<Joystick>();
     
         if (TampilanPhoton.IsMine) {
             PlayerCamera.SetActive(true);
@@ -94,11 +100,14 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
 
 // ini untuk mengetahui pergerkaan player
     private void CheckInput() {
-        var move = new Vector3(Input.GetAxisRaw("Horizontal"),Input.GetAxisRaw("Vertical"));
+        JoyHorizon= (joystick.Horizontal*3);
+        JoyVertical= (joystick.Vertical*3);
+
+        var move = new Vector3(Input.GetAxisRaw("Horizontal")+JoyHorizon,Input.GetAxisRaw("Vertical")+JoyVertical);
         transform.position += move * MoveSpeed * Time.deltaTime;
 
         //Ketika Role mahasiswa dan role dosen saling berdekatan maka tombol akan dapat ditekan 
-         if (Input.GetKeyDown(KeyCode.Return) && (alpaButton.interactable==true || hadirButton.interactable==true)) {
+         if ((Input.GetKeyDown(KeyCode.Return)|| tekan == true) && (alpaButton.interactable==true || hadirButton.interactable==true)) {
             // Debug.Log("ADA Enter");
             if(isDosen==true) {
                 // Debug.Log("Lain = " + Lain);
@@ -113,6 +122,7 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
                 TampilanPhoton.RPC("RPC_HadirButtonClicked", RpcTarget.All);
                 AudioHadir.SetActive(true);
             }
+            tekan=false;
         }
         //membunyikan suaar aim ketika enter ditekan
         if (Input.GetKeyDown(KeyCode.Return)) {
@@ -120,15 +130,15 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
         }
 
         //Mengecek tombol WASD untuk mengetahui pergerakan player
-        if (Input.GetKeyDown(KeyCode.A)) {
+        if (Input.GetKeyDown(KeyCode.A) || (joystick.Horizontal<0)) {
             TampilanPhoton.RPC("FlipTrue", RpcTarget.All);
             // Debug.Log("ADA kiri");
         }
-        if (Input.GetKeyDown(KeyCode.D)) {
+        if (Input.GetKeyDown(KeyCode.D)|| (joystick.Horizontal>0) ){
             TampilanPhoton.RPC("FlipFalse", RpcTarget.All);
             // Debug.Log("ADA kanan");
         }
-        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) ) {
+        if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S) || (joystick.Horizontal<0) || (joystick.Horizontal>0) ) {
             anim.SetBool("isRunning",true);
         }
         else {
@@ -168,6 +178,10 @@ public class PlayerScript : MonoBehaviourPunCallbacks {
             AudioAIM.SetActive(false);
             AudioALPA.SetActive(false);
             AudioHadir.SetActive(false);
+    }
+
+    public void booltekan(){
+        tekan=true;
     }
 
 //mengirimkan pergerakan player kita untuk diterima oleh player lain

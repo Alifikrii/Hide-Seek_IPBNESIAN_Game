@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviourPunCallbacks {
     public Text JumlahPlayerdiLoby;
     public GameObject DisconnectUI;
     private bool off = false;
+    // private bool isPaused = false;
     public Button startButton;
     public PhotonView myPv;
 
@@ -42,12 +43,22 @@ public class GameManager : MonoBehaviourPunCallbacks {
     //Ini untuk menampilkan hasil permainan 
     public GameObject Result;
     public Text ResultText;
+    public GameObject DisconectCanvas;
+    public Text DisconnectText;
+
+    private MenuController Menucontroller;
 
 
 
     
     private void Update() {
         myPv = GetComponent<PhotonView>();
+        
+        if(PhotonNetwork.CurrentRoom==null)
+        {
+            lostConnect();
+        }
+
         PingText.text = "ping : " + PhotonNetwork.GetPing() + "ms";
         NamaRoom.text = "LOBBY : " + PhotonNetwork.CurrentRoom.Name;
         if(PhotonNetwork.GetPing()>90)
@@ -65,6 +76,10 @@ public class GameManager : MonoBehaviourPunCallbacks {
         else if(PhotonNetwork.CurrentRoom.PlayerCount <= 3) {
             startButton.interactable = false;
         }
+
+        // if(PhotonNetwork.GetPing()>500){
+        //     highPing();
+        // }
 
         // Menghitung banyaknya player yang ada di dalam room 
         // banyaknya player yang alpa
@@ -158,9 +173,25 @@ public class GameManager : MonoBehaviourPunCallbacks {
         ResultText.text = "Class Dismissed";
     }
 
+
+    public void lostConnect(){
+        DisconectCanvas.SetActive(true);
+    }	
+
+    public void tombolKeluar(){
+        Application.Quit();
+    }
+
+
     public void leaveRoom() {
+        DisconectCanvas.SetActive(false);
         PhotonNetwork.LeaveRoom();
         PhotonNetwork.LoadLevel("MainMenu");
+    }
+    public void RejoinRoom() {
+        Menucontroller = GetComponent<MenuController>();
+        Menucontroller.rejoinRoom();
+        Result.SetActive(false);
     }
 
    

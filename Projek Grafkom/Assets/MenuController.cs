@@ -20,7 +20,24 @@ public class MenuController : MonoBehaviourPunCallbacks
     [SerializeField] private InputField CreateGameInput;
     [SerializeField] private InputField JoinGameInput;
     [SerializeField] private GameObject StartButton;
+    [SerializeField] private static string namaLoby;
+    [SerializeField] private static string namaPlayer;
+    private bool off = false;
+    public GameObject DisconnectUI;
 
+
+    private void Update(){
+        if(off && Input.GetKeyDown(KeyCode.Escape))
+        {
+            DisconnectUI.SetActive(false);
+            off=false;
+        }
+        else if(!off && Input.GetKeyDown(KeyCode.Escape))
+        {
+            DisconnectUI.SetActive(true);
+            off=true;
+        }
+    }
     private void Start()
     {
         UsernameMenu.SetActive(true);
@@ -51,8 +68,23 @@ public class MenuController : MonoBehaviourPunCallbacks
     public void SetUserName()
     {
         UsernameMenu.SetActive(false);
+        namaPlayer = UsernameInput.text;
         PhotonNetwork.NickName = UsernameInput.text;
     }
+
+// .........................EKSPERIMEN................................//
+    public void rejoinRoom(){
+        PhotonNetwork.LeaveRoom();
+        RoomOptions roomOptions = new RoomOptions();
+        roomOptions.MaxPlayers = 10;
+        SetRejoinUserName();
+        PhotonNetwork.JoinOrCreateRoom (namaLoby, roomOptions, TypedLobby.Default);
+    }
+
+    public void SetRejoinUserName(){
+        PhotonNetwork.NickName = namaPlayer;
+    }
+// .........................EKSPERIMEN................................//
 
 //untuk membuat room dengan masimal 10 player
     public void CreateGame()
@@ -64,6 +96,7 @@ public class MenuController : MonoBehaviourPunCallbacks
     {
         RoomOptions roomOptions = new RoomOptions();
         roomOptions.MaxPlayers = 10;
+        namaLoby = JoinGameInput.text;
         PhotonNetwork.JoinOrCreateRoom (JoinGameInput.text, roomOptions, TypedLobby.Default);
     }
 
@@ -98,5 +131,9 @@ public class MenuController : MonoBehaviourPunCallbacks
         Credits.SetActive(false);
         Role.SetActive(false);
         Rules.SetActive(false);
+    }
+
+    public void tombolKeluar(){
+        Application.Quit();
     }
 }

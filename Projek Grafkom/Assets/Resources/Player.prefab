@@ -247,6 +247,8 @@ MonoBehaviour:
   PlayerNameText: {fileID: 0}
   lampu: {fileID: 0}
   MoveSpeed: 0
+  JoyHorizon: 0
+  JoyVertical: 0
   alpaButton: {fileID: 0}
   hadirButton: {fileID: 0}
   alpaBtn: {fileID: 0}
@@ -694,7 +696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.219, y: 0.893}
+  m_AnchoredPosition: {x: 1.61, y: 0.873}
   m_SizeDelta: {x: 494.71576, y: 119.3302}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &940566956010577265
@@ -775,8 +777,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.1400003, y: -0.62699986}
-  m_SizeDelta: {x: 203.97647, y: 92.68915}
+  m_AnchoredPosition: {x: 1.61067, y: -0.49084}
+  m_SizeDelta: {x: 255.32214, y: 119.53943}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4974305030832162929
 CanvasRenderer:
@@ -859,7 +861,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 5321945037600693575}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4785972276988864563}
+        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
+        m_MethodName: booltekan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &6412028636300656782
 GameObject:
   m_ObjectHideFlags: 0
@@ -916,7 +930,7 @@ MonoBehaviour:
   - {x: 1.4169295, y: -7.7670264, z: 0}
   m_ShapePathHash: -185056042
   m_Mesh: {fileID: 0}
-  m_InstanceId: 33850
+  m_InstanceId: 75106
 --- !u!1 &7112646263714550551
 GameObject:
   m_ObjectHideFlags: 0
@@ -953,8 +967,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.1400003, y: -0.62699986}
-  m_SizeDelta: {x: 203.97647, y: 92.68915}
+  m_AnchoredPosition: {x: 1.61, y: -0.494}
+  m_SizeDelta: {x: 257.54553, y: 120.36188}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3311171315935557062
 CanvasRenderer:
@@ -1037,7 +1051,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 459982102672034248}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4785972276988864563}
+        m_TargetAssemblyTypeName: PlayerScript, Assembly-CSharp
+        m_MethodName: booltekan
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7566034405609395786
 GameObject:
   m_ObjectHideFlags: 0
@@ -1200,6 +1226,8 @@ MonoBehaviour:
   PlayerNameText: {fileID: 8318878405054856234}
   lampu: {fileID: 7566034405964555760}
   MoveSpeed: 11
+  JoyHorizon: 0
+  JoyVertical: 0
   alpaButton: {fileID: 2240574380136496661}
   hadirButton: {fileID: 4046653117228316759}
   alpaBtn: {fileID: 5858300109688765048}
